@@ -1,0 +1,67 @@
+package com.hogwartscompany.softclient.dao;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hogwartscompany.softclient.model.Worksite;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.List;
+
+public class WorksiteDAO {
+
+    public List<Worksite> getAllWorksites() {
+        //La méthode nous permet de récupérer les sites de travail avec le GET de l'API (adresse)
+        //On récupère une chaîne de caractères JSON (format donné par l'API) pour la découper en fonction des champs définis dans notre classe
+        StringBuilder responseString = new StringBuilder();
+
+        try {
+            URL url = new URL("http://localhost:5655/api/v1/worksites");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+
+            //On vérifie que la connexion s'est effectivement faite avant de continuer
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                //On a besoin de spécifier l'encodage UTF-8 lors de la création InputStreamReader → affichage des accents
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+                String inputLine; //Ligne récupérée
+
+                //Tant que la boucle ne tombe pas sur une ligne vide, on continue de rajouter les lignes
+                while ((inputLine = in.readLine()) != null) {
+                    responseString.append(inputLine);
+                }
+                //On ferme la lecture à la première ligne vide
+                in.close();
+            } else {
+                responseString.append("Erreur de réponse de l'API. Code : ").append(responseCode);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            responseString.append("Erreur lors de l'appel à l'API : ").append(e.getMessage());
+        }
+
+        return parseJsonArray(responseString.toString());
+    }
+
+    // Création de la méthode parseJsonArray pour découper les chaînes de caractères récupérées → sous format de table vu que GetAll
+    private List<Worksite> parseJsonArray(String jsonArray) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(jsonArray, new TypeReference<List<Worksite>>() {
+
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+}
