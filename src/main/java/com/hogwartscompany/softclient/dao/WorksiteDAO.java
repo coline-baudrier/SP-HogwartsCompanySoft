@@ -7,6 +7,7 @@ import com.hogwartscompany.softclient.model.Worksite;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,6 +16,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class WorksiteDAO {
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final String API_URL = "http://localhost:5655/api/v1/worksites";
 
     public List<Worksite> getAllWorksites() {
         //La méthode nous permet de récupérer les sites de travail avec le GET de l'API (adresse)
@@ -63,5 +67,25 @@ public class WorksiteDAO {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    public void createWorksite(Worksite worksite) throws IOException {
+        URL url = new URL(API_URL);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
+        try (OutputStream outputStream = connection.getOutputStream()) {
+            String jsonWorksite = objectMapper.writeValueAsString(worksite);
+            byte[] input = jsonWorksite.getBytes("utf-8");
+            outputStream.write(input, 0, input.length);
+        }
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Échec de la requête : " + responseCode);
+        }
+        connection.disconnect();
     }
 }

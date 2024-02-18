@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("connexion.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addWorksite.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
             stage.setTitle("Hogwarts Company - Votre annuaire d'entreprise");
             stage.setScene(scene);

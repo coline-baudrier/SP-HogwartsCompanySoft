@@ -27,7 +27,7 @@
                    <children>
                       <TableView fx:id="worksiteTable" prefHeight="605.0" prefWidth="1198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columns>
-                            <!-- <TableColumn fx:id="idWorksite" prefWidth="83.0" text="ID" /> -->
+                            <TableColumn fx:id="idWorksite" prefWidth="83.0" text="ID" />
                             <TableColumn fx:id="nameWorksite" prefWidth="83.0" text="Nom du site" />
                             <TableColumn fx:id="typeWorksite" prefWidth="67.0" text="Type de site" />
                             <TableColumn fx:id="phoneWorksite" prefWidth="117.0" text="Téléphone" />
