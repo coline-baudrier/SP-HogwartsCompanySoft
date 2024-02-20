@@ -26,7 +26,7 @@ public class WorksiteDAO {
         StringBuilder responseString = new StringBuilder();
 
         try {
-            URL url = new URL("http://localhost:5655/api/v1/worksites");
+            URL url = new URL(API_URL); // Utilisation de l'URL stockée en tant que variable globale
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 

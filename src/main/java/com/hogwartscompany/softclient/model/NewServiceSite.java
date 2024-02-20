@@ -5,13 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Locale;
 
-public class ServiceSite {
-    private final SimpleIntegerProperty idService;
+public class NewServiceSite {
     private final SimpleStringProperty nameService;
     private final SimpleStringProperty typeService;
     private final SimpleStringProperty phoneService;
@@ -20,8 +16,7 @@ public class ServiceSite {
     private final SimpleIntegerProperty idAddress;
     private final SimpleIntegerProperty idWorksite;
 
-    public ServiceSite(
-            @JsonProperty("idService") int idService,
+    public NewServiceSite(
             @JsonProperty("nameService") String nameService,
             @JsonProperty("typeService") String typeService,
             @JsonProperty("phoneService") String phoneService,
@@ -30,7 +25,6 @@ public class ServiceSite {
             @JsonProperty("idAddress") int idAddress,
             @JsonProperty("idWorksite") int idWorksite
     ) {
-        this.idService = new SimpleIntegerProperty(idService);
         this.nameService = new SimpleStringProperty(nameService);
         this.typeService = new SimpleStringProperty(typeService);
         this.phoneService = new SimpleStringProperty(phoneService);
@@ -40,17 +34,6 @@ public class ServiceSite {
         this.idWorksite = new SimpleIntegerProperty(idWorksite);
     }
 
-    public int getIdService() {
-        return idService.get();
-    }
-
-    public SimpleIntegerProperty idServiceProperty() {
-        return idService;
-    }
-
-    public void setIdService(int idService) {
-        this.idService.set(idService);
-    }
 
     public String getNameService() {
         return nameService.get();

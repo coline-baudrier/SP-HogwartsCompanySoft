@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Address {
-   private final SimpleIntegerProperty idAddress;
+public class NewAddress {
     private final SimpleStringProperty buildingFloor;
     private final SimpleStringProperty buildingName;
     private final SimpleStringProperty lineAddress1;
@@ -13,33 +12,19 @@ public class Address {
     private final SimpleStringProperty departmentCode;
     private final SimpleStringProperty cityName;
 
-    public Address(
-            @JsonProperty("idAddress") int idAddress,
+    public NewAddress(
             @JsonProperty("buildingFloor") String buildingFloor,
             @JsonProperty("buildingName") String buildingName,
             @JsonProperty("lineAddress1") String lineAddress1,
             @JsonProperty("lineAddress2") String lineAddress2,
             @JsonProperty("departmentCode") String departmentCode,
             @JsonProperty("cityName") String cityName) {
-        this.idAddress = new SimpleIntegerProperty(idAddress);
         this.buildingFloor = new SimpleStringProperty(buildingFloor);
         this.buildingName = new SimpleStringProperty(buildingName);
         this.lineAddress1 = new SimpleStringProperty(lineAddress1);
         this.lineAddress2 = new SimpleStringProperty(lineAddress2);
         this.departmentCode = new SimpleStringProperty(departmentCode);
         this.cityName = new SimpleStringProperty(cityName);
-    }
-
-    public int getIdAddress() {
-        return idAddress.get();
-    }
-
-    public SimpleIntegerProperty idAddressProperty() {
-        return idAddress;
-    }
-
-    public void setIdAddress(int idAddress) {
-        this.idAddress.set(idAddress);
     }
 
     public String getBuildingFloor() {
