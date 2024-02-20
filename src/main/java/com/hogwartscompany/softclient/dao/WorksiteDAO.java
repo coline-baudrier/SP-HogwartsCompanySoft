@@ -107,4 +107,25 @@ public class WorksiteDAO {
 
         return null;
     }
+
+    public Worksite updateWorksite (int idWorksite, NewWorksite newWorksite) throws IOException {
+        URL url = new URL(API_URL + "/" + idWorksite);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
+        try (OutputStream outputStream = connection.getOutputStream()) {
+            String jsonWorksite = objectMapper.writeValueAsString(newWorksite);
+            byte[] input = jsonWorksite.getBytes("utf-8");
+            outputStream.write(input, 0, input.length);
+        }
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Échec de la requête : " + responseCode);
+        }
+        connection.disconnect();
+        return null;
+    }
 }

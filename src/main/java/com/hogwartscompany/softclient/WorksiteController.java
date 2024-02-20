@@ -114,8 +114,10 @@ public class WorksiteController {
 
                 //On récupère le controller de la nouvelle fenêtre
                 DetailsWorksiteController controller = loader.getController();
+
                 //On envoie les informations du site sélectionné au controller de la nouvelle fenêtre
                 controller.initData(selectedWorksite);
+
                 //Création de la nouvelle scene
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();

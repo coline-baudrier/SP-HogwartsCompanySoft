@@ -6,9 +6,14 @@ import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.Key;
+
+import static javafx.scene.input.KeyCode.*;
 
 public class ConnexionController {
 
@@ -16,7 +21,7 @@ public class ConnexionController {
     public Button buttonGoToHomePage;
 
     @FXML
-    void goToHomePage(ActionEvent event) {
+    void goToHomePage() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             Parent root = loader.load();
@@ -27,6 +32,13 @@ public class ConnexionController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleKeyPressed(KeyEvent event) {
+        if (event.isControlDown() && event.getCode() == KeyCode.TAB) {
+            goToHomePage();
         }
     }
 }

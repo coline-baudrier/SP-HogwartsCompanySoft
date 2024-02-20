@@ -1,9 +1,15 @@
 package com.hogwartscompany.softclient;
 
+import com.hogwartscompany.softclient.dao.AddressDAO;
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
+import com.hogwartscompany.softclient.model.Address;
 import com.hogwartscompany.softclient.model.Worksite;
+import com.hogwartscompany.softclient.model.NewWorksite;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -13,12 +19,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.util.Duration;
 import java.util.Optional;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 public class DetailsWorksiteController {
 
     @FXML
     private TextField addressWorksite;
+
+    @FXML
+    private TextField buildingFloor;
+
+    @FXML
+    private TextField buildingName;
 
     @FXML
     private Button buttonClosePopUp;
@@ -30,10 +49,22 @@ public class DetailsWorksiteController {
     private Button buttonUpdateWorksite;
 
     @FXML
+    private TextField cityName;
+
+    @FXML
+    private TextField departmentCode;
+
+    @FXML
     private TextField emailWorksite;
 
     @FXML
     private TextField idWorksite;
+
+    @FXML
+    private TextField lineAddress1;
+
+    @FXML
+    private TextField lineAddress2;
 
     @FXML
     private TextField nameWorksite;
@@ -45,13 +76,32 @@ public class DetailsWorksiteController {
     private TextField typeWorksite;
 
     private Worksite selectedWorksite;
+
     private final WorksiteDAO worksiteDAO = new WorksiteDAO();
+    private final AddressDAO addressDAO = new AddressDAO();
 
     @FXML
     void closePopUp(ActionEvent event) {
-        Scene scene = buttonClosePopUp.getScene();
-        Stage stage = (Stage) scene.getWindow();
-        stage.close();
+        Stage popupStage = (Stage) buttonClosePopUp.getScene().getWindow();
+        popupStage.close();
+
+        Stage parentStage = (Stage) popupStage.getOwner();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), e -> reloadWorksitePage(parentStage)));
+        timeline.play();
+    }
+
+    private void reloadWorksitePage(Stage parentStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("worksite.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            parentStage.setScene(scene);
+            parentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -98,6 +148,28 @@ public class DetailsWorksiteController {
         addressWorksite.setEditable(true);
 
         Button saveButton = new Button("Enregistrer");
+        saveButton.setOnAction(e -> {
+            NewWorksite newWorksite = new NewWorksite(
+                    nameWorksite.getText(),
+                    typeWorksite.getText(),
+                    phoneWorksite.getText(),
+                    emailWorksite.getText(),
+                    Integer.parseInt(addressWorksite.getText())
+            );
+
+            int worksiteId = Integer.parseInt(idWorksite.getText());
+
+            try {
+                // Appeler la méthode updateWorksite de votre API avec les nouvelles données
+                worksiteDAO.updateWorksite(worksiteId, newWorksite);
+                // Gérer la réussite de la mise à jour, par exemple, afficher un message de confirmation
+                System.out.println("Site de travail mis à jour avec succès !");
+            } catch (IOException ex) {
+                // Gérer les erreurs lors de la mise à jour, par exemple, afficher un message d'erreur
+                ex.printStackTrace();
+                System.err.println("Erreur lors de la mise à jour du site de travail : " + ex.getMessage());
+            }
+        });
 
         AnchorPane container = (AnchorPane) idWorksite.getParent();
         container.getChildren().add(saveButton);
@@ -113,12 +185,28 @@ public class DetailsWorksiteController {
 
     public void initData(Worksite worksite) {
         selectedWorksite = worksite;
+        int addressId = worksite.getIdAddress(); // Obtenir l'ID de l'adresse
+
         idWorksite.setText(String.valueOf(worksite.getIdWorksite()));
         nameWorksite.setText(worksite.getNameWorksite());
         typeWorksite.setText(worksite.getTypeWorksite());
         phoneWorksite.setText(worksite.getPhoneWorksite());
         emailWorksite.setText(worksite.getEmailWorksite());
-        addressWorksite.setText(String.valueOf(worksite.getIdAddress()));
+
+        // Charger les détails de l'adresse à partir de son ID
+        Address address = addressDAO.getAddressById(addressId);
+
+        if (address != null) {
+            addressWorksite.setText(String.valueOf(address.getIdAddress()));
+            buildingFloor.setText(address.getBuildingFloor());
+            buildingName.setText(address.getBuildingName());
+            lineAddress1.setText(address.getLineAddress1());
+            lineAddress2.setText(address.getLineAddress2());
+            departmentCode.setText(address.getDepartmentCode());
+            cityName.setText(address.getCityName());
+        } else {
+            // Gérer le cas où l'adresse n'est pas trouvée
+        }
 
         idWorksite.setEditable(false);
         nameWorksite.setEditable(false);
