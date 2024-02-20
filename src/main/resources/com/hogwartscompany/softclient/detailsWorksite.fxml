@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.DetailsWorksiteController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="800.0" opacity="0.3" pickOnBounds="true">
@@ -93,12 +92,12 @@
          </font>
       </Label>
       <TextField layoutX="497.0" layoutY="577.0" prefHeight="35.0" prefWidth="210.0" />
-      <Button fx:id="buttonUpdateWorksite" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="643.0" mnemonicParsing="false" onAction="#updateWorksite" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Modifier le site" textFill="WHITE">
+      <Button fx:id="buttonUpdateWorksite" alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="631.0" mnemonicParsing="false" onAction="#updateWorksite" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Modifier le site" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="buttonDeleteWorksite" alignment="CENTER" contentDisplay="CENTER" layoutX="528.0" layoutY="643.0" mnemonicParsing="false" onAction="#deleteWorksite" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Supprimer le site" textFill="WHITE">
+      <Button fx:id="buttonDeleteWorksite" alignment="CENTER" contentDisplay="CENTER" layoutX="497.0" layoutY="631.0" mnemonicParsing="false" onAction="#deleteWorksite" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Supprimer le site" textFill="WHITE">
          <font>
             <Font name="Lucida Sans Regular" size="14.0" />
          </font>

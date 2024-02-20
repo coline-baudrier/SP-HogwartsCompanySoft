@@ -2,6 +2,7 @@ package com.hogwartscompany.softclient.dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hogwartscompany.softclient.model.NewWorksite;
 import com.hogwartscompany.softclient.model.Worksite;
 
 import java.io.BufferedReader;
@@ -9,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -69,7 +69,7 @@ public class WorksiteDAO {
         }
     }
 
-    public void createWorksite(Worksite worksite) throws IOException {
+    public void createWorksite(NewWorksite newWorksite) throws IOException {
         URL url = new URL(API_URL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -77,7 +77,7 @@ public class WorksiteDAO {
         connection.setDoOutput(true);
 
         try (OutputStream outputStream = connection.getOutputStream()) {
-            String jsonWorksite = objectMapper.writeValueAsString(worksite);
+            String jsonWorksite = objectMapper.writeValueAsString(newWorksite);
             byte[] input = jsonWorksite.getBytes("utf-8");
             outputStream.write(input, 0, input.length);
         }
@@ -87,5 +87,24 @@ public class WorksiteDAO {
             throw new IOException("Échec de la requête : " + responseCode);
         }
         connection.disconnect();
+    }
+
+    public Worksite deleteWorksite(int idWorksite) throws IOException {
+            URL url = new URL(API_URL + "/" + idWorksite);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            // La suppression a réussi
+            System.out.println("Le site de travail a été supprimé avec succès.");
+        } else {
+            // La suppression a échoué, lancer une exception avec le code de réponse
+            throw new IOException("Échec de la suppression du chantier. Code de réponse : " + responseCode);
+        }
+
+        connection.disconnect();
+
+        return null;
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -81,7 +82,22 @@ public class WorksiteController {
 
     @FXML
     void addWorksite(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addWorksite.fxml"));
+            Parent root = loader.load();
 
+            Scene scene = new Scene(root);
+
+            Stage modalStage = new Stage();
+            modalStage.setScene(scene);
+            modalStage.setTitle("Ajouter un site de travail");
+
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+
+            modalStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
