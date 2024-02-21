@@ -6,27 +6,27 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Address {
    private final SimpleIntegerProperty idAddress;
-    private final SimpleStringProperty buildingFloor;
+    private final SimpleIntegerProperty buildingFloor;
     private final SimpleStringProperty buildingName;
     private final SimpleStringProperty lineAddress1;
     private final SimpleStringProperty lineAddress2;
-    private final SimpleStringProperty departmentCode;
+    private final SimpleIntegerProperty departmentCode;
     private final SimpleStringProperty cityName;
 
     public Address(
             @JsonProperty("idAddress") int idAddress,
-            @JsonProperty("buildingFloor") String buildingFloor,
+            @JsonProperty("buildingFloor") int buildingFloor,
             @JsonProperty("buildingName") String buildingName,
             @JsonProperty("lineAddress1") String lineAddress1,
             @JsonProperty("lineAddress2") String lineAddress2,
-            @JsonProperty("departmentCode") String departmentCode,
+            @JsonProperty("departmentCode") int departmentCode,
             @JsonProperty("cityName") String cityName) {
         this.idAddress = new SimpleIntegerProperty(idAddress);
-        this.buildingFloor = new SimpleStringProperty(buildingFloor);
+        this.buildingFloor = new SimpleIntegerProperty(buildingFloor);
         this.buildingName = new SimpleStringProperty(buildingName);
         this.lineAddress1 = new SimpleStringProperty(lineAddress1);
         this.lineAddress2 = new SimpleStringProperty(lineAddress2);
-        this.departmentCode = new SimpleStringProperty(departmentCode);
+        this.departmentCode = new SimpleIntegerProperty(departmentCode);
         this.cityName = new SimpleStringProperty(cityName);
     }
 
@@ -42,16 +42,16 @@ public class Address {
         this.idAddress.set(idAddress);
     }
 
-    public String getBuildingFloor() {
+    public int getBuildingFloor() {
         return buildingFloor.get();
     }
 
-    public SimpleStringProperty buildingFloorProperty() {
+    public SimpleIntegerProperty buildingFloorProperty() {
         return buildingFloor;
     }
 
     public void setBuildingFloor(String buildingFloor) {
-        this.buildingFloor.set(buildingFloor);
+        this.buildingFloor.set(Integer.parseInt(buildingFloor));
     }
 
     public String getBuildingName() {
@@ -90,16 +90,16 @@ public class Address {
         this.lineAddress2.set(lineAddress2);
     }
 
-    public String getDepartmentCode() {
+    public int getDepartmentCode() {
         return departmentCode.get();
     }
 
-    public SimpleStringProperty departmentCodeProperty() {
+    public SimpleIntegerProperty departmentCodeProperty() {
         return departmentCode;
     }
 
     public void setDepartmentCode(String departmentCode) {
-        this.departmentCode.set(departmentCode);
+        this.departmentCode.set(Integer.parseInt(departmentCode));
     }
 
     public String getCityName() {

@@ -2,6 +2,7 @@ package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
 import com.hogwartscompany.softclient.model.Worksite;
+import com.hogwartscompany.softclient.model.UserSession;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,21 +83,31 @@ public class WorksiteController {
 
     @FXML
     void addWorksite(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("addWorksite.fxml"));
-            Parent root = loader.load();
+        boolean isAdmin = UserSession.getInstance().isAdmin();
+        if (isAdmin) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("addWorksite.fxml"));
+                Parent root = loader.load();
 
-            Scene scene = new Scene(root);
+                Scene scene = new Scene(root);
 
-            Stage modalStage = new Stage();
-            modalStage.setScene(scene);
-            modalStage.setTitle("Ajouter un site de travail");
+                Stage modalStage = new Stage();
+                modalStage.setScene(scene);
+                modalStage.setTitle("Ajouter un site de travail");
 
-            modalStage.initModality(Modality.APPLICATION_MODAL);
+                modalStage.initModality(Modality.APPLICATION_MODAL);
 
-            modalStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
+                modalStage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            buttonAddWorksite.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lashlabask");
+            alert.setHeaderText(null);
+            alert.setContentText("Visiblement tu n'as pas passé tes ASPIC, tu ne peux rien ajouter par ici !");
+            alert.showAndWait();
         }
     }
 

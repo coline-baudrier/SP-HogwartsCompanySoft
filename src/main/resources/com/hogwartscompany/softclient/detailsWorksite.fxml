@@ -111,5 +111,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="buttonDisplayAddress" layoutX="265.0" layoutY="355.0" mnemonicParsing="false" onAction="#displayAddress" text="Adresses" />
    </children>
 </AnchorPane>

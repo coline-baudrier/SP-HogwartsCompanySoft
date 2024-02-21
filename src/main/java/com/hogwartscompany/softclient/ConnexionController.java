@@ -75,7 +75,7 @@ public class ConnexionController {
                     goToHomePage();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Revelio : t'es un sorcier diplômé ?");
+                    alert.setTitle("Revelio");
                     alert.setHeaderText(null);
                     alert.setContentText("Le mot de passe entré est incorrect : t'es vraiment un sorcier diplômé ?");
                     alert.showAndWait();

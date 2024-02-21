@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="458.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.InfoAddressController">
+   <children>
+      <ImageView fitHeight="458.0" fitWidth="762.0" opacity="0.75" pickOnBounds="true">
+         <image>
+            <Image url="@../../../assets/image/wallpaper.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="34.0" prefHeight="67.0" prefWidth="370.0" style="-fx-background-color: #1F456E; -fx-background-radius: 25;" text="Informations adresses" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="addressTable" layoutY="214.0" opacity="0.95" prefHeight="244.0" prefWidth="762.0">
+        <columns>
+          <TableColumn fx:id="idAddress" prefWidth="34.0" text="ID" />
+          <TableColumn fx:id="buildingFloor" prefWidth="48.0" text="Etage" />
+            <TableColumn fx:id="buildingName" prefWidth="141.0" text="Bâtiment" />
+            <TableColumn fx:id="lineAddress1" prefWidth="194.0" text="Adresse" />
+            <TableColumn fx:id="lineAddress2" prefWidth="189.0" text="Complément" />
+            <TableColumn fx:id="departmentCode" prefWidth="47.0" text="Dpt" />
+            <TableColumn fx:id="cityName" prefWidth="108.0" text="Ville" />
+        </columns>
+      </TableView>
+      <Button fx:id="buttonClosePopUp" layoutX="682.0" layoutY="14.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #1F456E; -fx-background-radius: 15;">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="50.0" opacity="0.75" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../assets/icons/quit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

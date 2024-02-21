@@ -2,6 +2,7 @@ package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
 import com.hogwartscompany.softclient.model.NewWorksite;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
