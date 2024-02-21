@@ -1,14 +1,19 @@
 package com.hogwartscompany.softclient;
 
+import com.hogwartscompany.softclient.model.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.security.Key;
@@ -19,6 +24,21 @@ public class ConnexionController {
 
     @FXML
     public Button buttonGoToHomePage;
+
+    @FXML
+    private void initialize() {
+
+    }
+
+    @FXML
+    private void pressButtonConnexion (ActionEvent event) {
+        UserSession userSession = UserSession.getInstance();
+
+        if (!userSession.isAdmin()) {
+            System.out.println(UserSession.getInstance().isAdmin());
+            goToHomePage();
+        }
+    }
 
     @FXML
     void goToHomePage() {
@@ -38,7 +58,29 @@ public class ConnexionController {
     @FXML
     void handleKeyPressed(KeyEvent event) {
         if (event.isControlDown() && event.getCode() == KeyCode.TAB) {
-            goToHomePage();
+            String adminPassword = "Rictusempra";
+
+            TextInputDialog askPassAdmin = new TextInputDialog();
+            askPassAdmin.setTitle("Sorcier diplômé ?");
+            askPassAdmin.setContentText("Donne moi le mot de passe pour entrer dans la maison des Admin : ");
+
+            askPassAdmin.showAndWait().ifPresent(passwordPrint -> {
+                if (passwordPrint.equals(adminPassword)) {
+                    UserSession.getInstance().setAdmin(true);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Je peux te laisser entrer");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Il semblerait que tu as réussi tes ASPICs, bien joué !");
+                    System.out.println(UserSession.getInstance().isAdmin());
+                    goToHomePage();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Revelio : t'es un sorcier diplômé ?");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Le mot de passe entré est incorrect : t'es vraiment un sorcier diplômé ?");
+                    alert.showAndWait();
+                }
+            });
         }
     }
 }

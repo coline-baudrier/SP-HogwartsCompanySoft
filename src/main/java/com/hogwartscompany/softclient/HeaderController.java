@@ -1,5 +1,6 @@
 package com.hogwartscompany.softclient;
 
+import com.hogwartscompany.softclient.model.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,8 @@ public class HeaderController {
     @FXML
     void disconnectAndClose(ActionEvent event) {
         try {
+            UserSession.resetInstance();
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("connexion.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);

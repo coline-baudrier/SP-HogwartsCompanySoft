@@ -22,4 +22,8 @@ public class UserSession {
     public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
+    public static synchronized void resetInstance() {
+        instance = null;
+    }
 }

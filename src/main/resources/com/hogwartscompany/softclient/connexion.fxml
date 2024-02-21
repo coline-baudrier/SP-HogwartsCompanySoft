@@ -34,7 +34,7 @@
                   <Font name="Corbel Light" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="buttonGoToHomePage" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="326.0" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="57.0" prefWidth="184.0" style="-fx-background-radius: 20;" text="Se connecter" textFill="WHITE">
+            <Button fx:id="buttonGoToHomePage" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="326.0" mnemonicParsing="false" onAction="#pressButtonConnexion" prefHeight="57.0" prefWidth="184.0" style="-fx-background-radius: 20; -fx-background-color: #14A1D9;" text="Se connecter" textFill="WHITE">
                <font>
                   <Font name="Corbel Light" size="24.0" />
                </font>
