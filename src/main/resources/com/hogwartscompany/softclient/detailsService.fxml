@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.DetailsServiceSiteController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="800.0" opacity="0.3" pickOnBounds="true">
+         <image>
+            <Image url="@../../../assets/image/wallpaper.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="14.0" prefHeight="53.0" prefWidth="549.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Détails service" textAlignment="CENTER">
+         <font>
+            <Font name="Lucida Sans Regular" size="26.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="98.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="N° de service">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idServiceSite" layoutX="152.0" layoutY="98.0" prefHeight="35.0" prefWidth="102.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Nom">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameServiceSite" layoutX="152.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Type">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="typeServiceSite" layoutX="497.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="209.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Téléphone">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="phoneServiceSite" layoutX="152.0" layoutY="209.0" prefHeight="35.0" prefWidth="210.0" />
+      <TextField fx:id="lineAddress1" layoutX="152.0" layoutY="467.0" prefHeight="35.0" prefWidth="556.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="266.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailServiceSite" layoutX="152.0" layoutY="265.0" prefHeight="35.0" prefWidth="345.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="350.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Adresse">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="addressServiceSite" layoutX="152.0" layoutY="350.0" prefHeight="35.0" prefWidth="102.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Etage">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="buildingFloor" layoutX="152.0" layoutY="409.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Bâtiment">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="buildingName" layoutX="497.0" layoutY="409.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="467.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Adresse">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lineAddress2" layoutX="152.0" layoutY="525.0" prefHeight="35.0" prefWidth="556.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="525.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Complement">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="departmentCode" layoutX="152.0" layoutY="577.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Département">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Ville">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cityName" layoutX="497.0" layoutY="577.0" prefHeight="35.0" prefWidth="210.0" />
+      <Button fx:id="buttonUpdateWorksite" alignment="CENTER" contentDisplay="CENTER" layoutX="178.0" layoutY="631.0" mnemonicParsing="false" onAction="#updateServiceSite" prefHeight="43.0" prefWidth="139.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Modifier le service" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonDeleteService" alignment="CENTER" contentDisplay="CENTER" layoutX="497.0" layoutY="631.0" mnemonicParsing="false" onAction="#deleteServiceSite" prefHeight="43.0" prefWidth="149.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 15;" text="Supprimer le service" textFill="WHITE">
+         <font>
+            <Font name="Lucida Sans Regular" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonClosePopUp" layoutX="728.0" layoutY="19.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 10;">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/icons/quit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="buttonDisplayAddress" layoutX="265.0" layoutY="355.0" mnemonicParsing="false" onAction="#displayAddress" text="Adresses" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="209.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Date création">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dateCreationServiceSite" layoutX="497.0" layoutY="209.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="280.0" layoutY="98.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Site de travail">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameWorksite" layoutX="462.0" layoutY="98.0" prefHeight="35.0" prefWidth="243.0" />
+      <TextField fx:id="worksiteServiceSite" layoutX="405.0" layoutY="98.0" prefHeight="35.0" prefWidth="51.0" />
+   </children>
+</AnchorPane>
