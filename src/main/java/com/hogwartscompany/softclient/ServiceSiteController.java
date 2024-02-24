@@ -130,6 +130,7 @@ public class ServiceSiteController {
                 DetailsServiceSiteController controller = loader.getController();
 
                 controller.initData(selectedServiceSite);
+                controller.loadDataIntoTableEmployee();
 
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();

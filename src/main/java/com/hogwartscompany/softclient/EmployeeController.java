@@ -104,6 +104,34 @@ public class EmployeeController {
 
     @FXML
     void addEmployee(ActionEvent event) {
+        boolean isAdmin = UserSession.getInstance().isAdmin();
+        if (isAdmin) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("addEmployee.fxml"));
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root);
+
+                Stage modalStage = new Stage();
+                modalStage.setScene(scene);
+                modalStage.setTitle("Ajouter un employé");
+
+                modalStage.initModality(Modality.APPLICATION_MODAL);
+
+                modalStage.showAndWait();
+                loadDataIntoTable();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            buttonAddEmployee.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lashlabask");
+            alert.setHeaderText(null);
+            alert.setContentText("Visiblement tu n'as pas passé tes ASPIC, tu ne peux rien ajouter par ici !");
+            alert.showAndWait();
+            loadDataIntoTable();
+        }
 
     }
 

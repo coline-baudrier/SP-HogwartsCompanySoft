@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class EmployeeDAO {
         return parseJsonArray(responseString.toString());
     }
 
+
     public Employee getEmployeeById(int idEmployee) {
         StringBuilder responseString = new StringBuilder();
 
@@ -76,8 +78,43 @@ public class EmployeeDAO {
             e.printStackTrace();
             responseString.append("Erreur lors de l'appel de l'API : ").append(e.getMessage());
         }
+
         Employee responseEmployee = parseJsonString(responseString.toString());
         return responseEmployee;
+    }
+
+    public List<Employee> getEmployeeByService(int idService) {
+        StringBuilder responseString = new StringBuilder();
+
+        try {
+            URL url = new URL(API_URL + "/searchByService/" + idService);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    responseString.append(inputLine);
+                }
+                in.close();
+            } else {
+                responseString.append("Erreur de réponse de l'API. Code : ").append(responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            responseString.append("Erreur lors de l'appel de l'API : ").append(e.getMessage());
+        }
+        List<Employee> allEmployees = parseJsonArray(responseString.toString());
+        List<Employee> employeesByService = new ArrayList<>();
+
+        for (Employee employee : allEmployees) {
+            if (employee.getServiceEmployee() == idService) {
+                employeesByService.add(employee);
+            }
+        }
+        return employeesByService;
     }
 
     public void createEmployee(NewEmployee newEmployee) throws IOException {

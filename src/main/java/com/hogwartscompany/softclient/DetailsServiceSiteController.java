@@ -1,18 +1,18 @@
 package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.AddressDAO;
+import com.hogwartscompany.softclient.dao.EmployeeDAO;
 import com.hogwartscompany.softclient.dao.ServiceDAO;
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
 import com.hogwartscompany.softclient.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 
 public class DetailsServiceSiteController {
@@ -84,10 +85,31 @@ public class DetailsServiceSiteController {
     private TextField typeServiceSite;
 
     private ServiceSite selectedServiceSite;
+    @FXML
+    private TableColumn<Employee, String> cellphoneEmployeeOfService;
+
+    @FXML
+    private TableColumn<Employee, String> phoneEmployeeOfService;
+
+    @FXML
+    private TableColumn<Employee, String> firstNameEmployeeOfService;
+
+    @FXML
+    private TableColumn<Employee, Integer> idEmployeeOfService;
+
+    @FXML
+    private TableColumn<Employee, String> jobEmployeeOfService;
+
+    @FXML
+    private TableColumn<Employee, String> lastNameEmployeeOfService;
+
+    @FXML
+    private TableView<Employee> listEmployeesOfService;
 
     private WorksiteDAO worksiteDAO = new WorksiteDAO();
     private AddressDAO addressDAO = new AddressDAO();
     private ServiceDAO serviceDAO = new ServiceDAO();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
 
     @FXML
     void closePopUp(ActionEvent event) {
@@ -279,6 +301,27 @@ public class DetailsServiceSiteController {
         departmentCode.setEditable(false);
         cityName.setEditable(false);
         nameWorksite.setEditable(false);
+    }
+
+    public void initialize() {
+        idEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().idEmployeeProperty().asObject());
+        firstNameEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        lastNameEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        phoneEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().phoneEmployeeProperty());
+        cellphoneEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().cellphoneEmployeeProperty());
+        jobEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().jobEmployeeProperty());
+    }
+
+    public void loadDataIntoTableEmployee() {
+        int idServiceDetails = selectedServiceSite.getIdService();
+        if (idServiceDetails != 0) {
+            List<Employee> listEmployees = employeeDAO.getEmployeeByService(idServiceDetails);
+            ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList(listEmployees);
+            listEmployeesOfService.setItems(employeeObservableList);
+        } else {
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setContentText("L'id du service n'a pas été trouvé");
+        }
     }
 
 }
