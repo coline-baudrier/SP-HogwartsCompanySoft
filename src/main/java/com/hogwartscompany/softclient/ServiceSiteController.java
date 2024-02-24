@@ -2,7 +2,7 @@ package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.ServiceDAO;
 import com.hogwartscompany.softclient.model.ServiceSite;
-import com.hogwartscompany.softclient.model.Worksite;
+import com.hogwartscompany.softclient.model.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +15,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.security.Provider;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -88,7 +88,34 @@ public class ServiceSiteController {
     }
     @FXML
     void addServiceSite(ActionEvent event) {
+        boolean isAdmin = UserSession.getInstance().isAdmin();
+        if (isAdmin) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("addServiceSite.fxml"));
+                Parent root = loader.load();
 
+                Scene scene = new Scene(root);
+
+                Stage modalStage = new Stage();
+                modalStage.setScene(scene);
+                modalStage.setTitle("Ajouter un service de travail");
+
+                modalStage.initModality(Modality.APPLICATION_MODAL);
+
+                modalStage.showAndWait();
+                loadDataIntoTable();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            buttonAddServiceSite.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lashlabask");
+            alert.setHeaderText(null);
+            alert.setContentText("Visiblement tu n'as pas passé tes ASPIC, tu ne peux rien ajouter par ici !");
+            alert.showAndWait();
+            loadDataIntoTable();
+        }
     }
 
     @FXML
@@ -118,6 +145,7 @@ public class ServiceSiteController {
             alert.setHeaderText(null);
             alert.setContentText("Aucune ligne sélectionnée !");
             alert.showAndWait();
+            loadDataIntoTable();
         }
     }
 

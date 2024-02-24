@@ -1,34 +1,30 @@
 package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.AddressDAO;
+import com.hogwartscompany.softclient.dao.ServiceDAO;
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
-import com.hogwartscompany.softclient.model.Address;
-import com.hogwartscompany.softclient.model.Worksite;
-import com.hogwartscompany.softclient.model.NewWorksite;
-import com.hogwartscompany.softclient.model.UserSession;
+import com.hogwartscompany.softclient.model.*;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import javafx.util.Duration;
+
+import java.security.Provider;
+import java.util.List;
 import java.util.Optional;
 import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.stage.Stage;
 
 public class DetailsWorksiteController {
 
@@ -77,10 +73,29 @@ public class DetailsWorksiteController {
     @FXML
     private TextField typeWorksite;
 
+    @FXML
+    private TableColumn<ServiceSite, Integer> idServiceOfWorksite;
+
+    @FXML
+    private TableColumn<ServiceSite, String> nameServiceOfWorksite;
+
+    @FXML
+    private TableColumn<ServiceSite, String> phoneServiceOfWorksite;
+
+    @FXML
+    private TableColumn<ServiceSite, String> typeServiceOfWorksite;
+
     private Worksite selectedWorksite;
 
     private final WorksiteDAO worksiteDAO = new WorksiteDAO();
+    private final ServiceDAO serviceDAO = new ServiceDAO();
     private final AddressDAO addressDAO = new AddressDAO();
+
+    @FXML
+    private TableView<ServiceSite> listServicesOfWorksite;
+
+
+
 
     @FXML
     void closePopUp(ActionEvent event) {
@@ -251,7 +266,7 @@ public class DetailsWorksiteController {
             // Gérer le cas où l'adresse n'est pas trouvée
         }
 
-        idWorksite.setEditable(false);
+        idWorksite.setEditable(true);
         nameWorksite.setEditable(false);
         typeWorksite.setEditable(false);
         phoneWorksite.setEditable(false);
@@ -265,4 +280,22 @@ public class DetailsWorksiteController {
         cityName.setEditable(false);
     }
 
+    public void initialize() {
+        idServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().idServiceProperty().asObject());
+        nameServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().nameServiceProperty());
+        typeServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().typeServiceProperty());
+        phoneServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().phoneServiceProperty());
+    }
+
+    public void loadDataIntoTableService() {
+        int idWorksiteDetails = selectedWorksite.getIdWorksite();
+        if (idWorksiteDetails != 0) {
+            List<ServiceSite> listServices = serviceDAO.getServicesByWorksite(idWorksiteDetails);
+            ObservableList<ServiceSite> servicesObservableList = FXCollections.observableArrayList(listServices);
+            listServicesOfWorksite.setItems(servicesObservableList);
+        } else {
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setContentText("L'id du site n'a pas été trouvé");
+        }
+    }
 }

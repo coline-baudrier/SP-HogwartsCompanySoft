@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -8,14 +9,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="671.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.AddWorksiteController">
+<AnchorPane prefHeight="671.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.AddServiceSiteController">
     <children>
         <ImageView fitHeight="700.0" fitWidth="800.0" opacity="0.3" pickOnBounds="true">
             <image>
                 <Image url="@../../../assets/image/wallpaper.jpg" />
             </image>
         </ImageView>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="34.0" prefHeight="53.0" prefWidth="549.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Détails site de travail" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="34.0" prefHeight="53.0" prefWidth="549.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Ajout d'un service" textAlignment="CENTER">
             <font>
                 <Font name="Lucida Sans Regular" size="26.0" />
             </font>
@@ -105,5 +106,17 @@
                 <Font size="14.0" />
             </font>
         </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="102.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Site">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="worksiteField" layoutX="152.0" layoutY="102.0" prefHeight="35.0" prefWidth="102.0" />
+      <DatePicker fx:id="dateField" layoutX="497.0" layoutY="102.0" prefHeight="35.0" prefWidth="210.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="102.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

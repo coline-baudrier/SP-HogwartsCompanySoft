@@ -1,9 +1,9 @@
 package com.hogwartscompany.softclient;
 
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
+import com.hogwartscompany.softclient.model.ServiceSite;
 import com.hogwartscompany.softclient.model.Worksite;
 import com.hogwartscompany.softclient.model.UserSession;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,13 +44,13 @@ public class WorksiteController {
     private TableColumn<Worksite, Integer> idWorksite;
 
     @FXML
-    private TableColumn<Worksite, String>  nameWorksite;
+    private TableColumn<Worksite, String> nameWorksite;
 
     @FXML
-    private TableColumn<Worksite, String>  phoneWorksite;
+    private TableColumn<Worksite, String> phoneWorksite;
 
     @FXML
-    private TableColumn<Worksite, String>  typeWorksite;
+    private TableColumn<Worksite, String> typeWorksite;
 
     private final WorksiteDAO worksiteDAO = new WorksiteDAO();
 
@@ -98,6 +98,7 @@ public class WorksiteController {
                 modalStage.initModality(Modality.APPLICATION_MODAL);
 
                 modalStage.showAndWait();
+                loadDataIntoTable();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -108,6 +109,7 @@ public class WorksiteController {
             alert.setHeaderText(null);
             alert.setContentText("Visiblement tu n'as pas passé tes ASPIC, tu ne peux rien ajouter par ici !");
             alert.showAndWait();
+            loadDataIntoTable();
         }
     }
 
@@ -128,6 +130,7 @@ public class WorksiteController {
 
                 //On envoie les informations du site sélectionné au controller de la nouvelle fenêtre
                 controller.initData(selectedWorksite);
+                controller.loadDataIntoTableService();
 
                 //Création de la nouvelle scene
                 Scene scene = new Scene(root);

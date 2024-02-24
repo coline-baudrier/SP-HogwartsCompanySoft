@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #14A1D9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.SearchController">
-    <fx:include fx:id="header" source="header.fxml" />
+    <!--<fx:include fx:id="header" source="header.fxml" />-->
     <children>
       <TabPane fx:id="resultsTable" layoutY="186.0" prefHeight="616.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -39,11 +39,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="685.0" prefWidth="1206.0">
+                        <TableView fx:id="serviceSiteTable" prefHeight="685.0" prefWidth="1206.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="idService" prefWidth="75.0" text="N° service" />
+                              <TableColumn fx:id="nameService" prefWidth="75.0" text="Nom du service" />
+                              <TableColumn fx:id="typeService" prefWidth="75.0" text="Type du service" />
+                              <TableColumn fx:id="phoneService" prefWidth="75.0" text="Téléphone" />
+                              <TableColumn fx:id="emailService" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="dateService" prefWidth="75.0" text="Date de création" />
+                              <TableColumn fx:id="addressService" prefWidth="75.0" text="ID Address" visible="false" />
+                              <TableColumn fx:id="worksiteService" prefWidth="75.0" text="ID Worksite" visible="false" />
                            </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -53,11 +62,24 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="685.0" prefWidth="1206.0">
+                        <TableView fx:id="employeeTable" prefHeight="685.0" prefWidth="1206.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                              <TableColumn prefWidth="75.0" text="C2" />
+                              <TableColumn fx:id="idEmployee" prefWidth="75.0" text="N° Employé" />
+                              <TableColumn fx:id="firstNameEmployee" prefWidth="75.0" text="Prénom" />
+                              <TableColumn fx:id="lastNameEmployee" prefWidth="75.0" text="Nom" />
+                              <TableColumn fx:id="jobEmployee" prefWidth="75.0" text="Job" />
+                              <TableColumn fx:id="phoneEmployee" prefWidth="75.0" text="Téléphone" />
+                              <TableColumn fx:id="cellphoneEmployee" prefWidth="75.0" text="Portable" />
+                              <TableColumn fx:id="emailEmployee" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="birthdateEmployee" prefWidth="75.0" text="Anniversaire" />
+                              <TableColumn fx:id="hiringDateEmployee" prefWidth="75.0" text="Embauche" />
+                              <TableColumn fx:id="adminEmployee" prefWidth="75.0" text="Admin" visible="false" />
+                              <TableColumn fx:id="idServiceEmployee" prefWidth="75.0" text="N° Service" visible="false" />
+                              <TableColumn fx:id="nameServiceEmployee" prefWidth="75.0" text="Service" />
                            </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>

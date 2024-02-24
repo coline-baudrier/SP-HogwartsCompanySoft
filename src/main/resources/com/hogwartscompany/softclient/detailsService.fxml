@@ -111,12 +111,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="buttonDisplayAddress" layoutX="265.0" layoutY="355.0" mnemonicParsing="false" onAction="#displayAddress" text="Adresses" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="209.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Date création">
+      <Button fx:id="buttonDisplayAddress" layoutX="266.0" layoutY="353.0" mnemonicParsing="false" onAction="#displayAddress" style="-fx-background-color: #80D2F2; -fx-background-radius: 15;" text="Voir le détail des adresses">
          <font>
-            <Font size="16.0" />
+            <Font size="14.0" />
          </font>
-      </Label>
+      </Button>
       <TextField fx:id="dateCreationServiceSite" layoutX="497.0" layoutY="209.0" prefHeight="35.0" prefWidth="210.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="280.0" layoutY="98.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Site de travail">
          <font>

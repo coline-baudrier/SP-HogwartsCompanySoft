@@ -1,8 +1,7 @@
 package com.hogwartscompany.softclient;
 
-import com.hogwartscompany.softclient.dao.WorksiteDAO;
-import com.hogwartscompany.softclient.model.NewWorksite;
-
+import com.hogwartscompany.softclient.dao.ServiceDAO;
+import com.hogwartscompany.softclient.model.NewServiceSite;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,54 +9,68 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.*;
 
-public class AddWorksiteController {
-    private final WorksiteDAO worksiteDAO;
+import java.sql.Timestamp;
+
+public class AddServiceSiteController {
+
+    private final ServiceDAO serviceDAO;
+
+    @FXML
+    private Button buttonAddWorksite;
 
     @FXML
     private Button buttonClosePopUp;
 
     @FXML
-    public TextField nameField;
+    private TextField emailField;
 
     @FXML
-    public TextField typeField;
+    private TextField idAddressField;
 
     @FXML
-    public TextField phoneField;
+    private TextField nameField;
 
     @FXML
-    public TextField emailField;
+    private TextField phoneField;
 
     @FXML
-    public TextField idAddressField;
+    private TextField typeField;
 
-    public AddWorksiteController() {
-        this.worksiteDAO = new WorksiteDAO();
+    @FXML
+    private DatePicker dateField;
+
+    @FXML
+    private TextField worksiteField;
+
+    public AddServiceSiteController() {
+        this.serviceDAO = new ServiceDAO();
     }
 
     @FXML
-    void closePopUp(ActionEvent event) {
-        Scene scene = buttonClosePopUp.getScene();
-        Stage stage = (Stage) scene.getWindow();
-        stage.close();
-    }
-
-    public void addWorksite(ActionEvent actionEvent) {
+    void addWorksite(ActionEvent event) {
         try {
-            String nameWorksite = nameField.getText();
-            String typeWorksite = typeField.getText();
-            String phoneWorksite = phoneField.getText();
-            String emailWorksite = emailField.getText();
-            int idAddress = Integer.parseInt(idAddressField.getText());
+            String nameServiceSite = nameField.getText();
+            String typeServiceSite = typeField.getText();
+            String phoneServiceSite = phoneField.getText();
+            String emailServiceSite = emailField.getText();
 
-            NewWorksite newWorksite = new NewWorksite(nameWorksite, typeWorksite, phoneWorksite, emailWorksite, idAddress);
-            worksiteDAO.createWorksite(newWorksite);
+            LocalDate selectedDate = dateField.getValue();
+            java.sql.Date sqlDate = java.sql.Date.valueOf(selectedDate);
+            Timestamp dateCreationServiceSite = new Timestamp(sqlDate.getTime());
+
+            int idAddress = Integer.parseInt(idAddressField.getText());
+            int idWorksite = Integer.parseInt(worksiteField.getText());
+
+            NewServiceSite newServiceSite = new NewServiceSite(nameServiceSite, typeServiceSite, phoneServiceSite, emailServiceSite, dateCreationServiceSite, idAddress, idWorksite);
+            serviceDAO.createServiceSite(newServiceSite);
 
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Succès");
@@ -77,6 +90,13 @@ public class AddWorksiteController {
             errorAlert.setContentText("Erreur lors de l'ajout du site de travail : " + e.getMessage());
             errorAlert.showAndWait();
         }
+    }
+
+    @FXML
+    void closePopUp(ActionEvent event) {
+        Scene scene = buttonClosePopUp.getScene();
+        Stage stage = (Stage) scene.getWindow();
+        stage.close();
     }
 
     @FXML
@@ -101,4 +121,5 @@ public class AddWorksiteController {
             e.printStackTrace();
         }
     }
+
 }

@@ -4,8 +4,6 @@ import com.hogwartscompany.softclient.dao.AddressDAO;
 import com.hogwartscompany.softclient.dao.ServiceDAO;
 import com.hogwartscompany.softclient.dao.WorksiteDAO;
 import com.hogwartscompany.softclient.model.*;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -178,23 +175,23 @@ public class DetailsServiceSiteController {
 
             Button saveButton = new Button("Enregistrer");
             saveButton.setOnAction(e -> {
-                // Récupération du texte de la cellule de la date
+                // Je récupère le texte de la date
                 String dateString = dateCreationServiceSite.getText();
 
-                // Format de la date attendu
+                // J'applique le format qui est attendu
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
-                    // Conversion du texte en objet Timestamp
+                    // On converti le texte en Timestamp
                     java.util.Date parsedDate = dateFormat.parse(dateString);
-                    Timestamp timestamp = new Timestamp(parsedDate.getTime());
+                    Timestamp timestampDateCreation = new Timestamp(parsedDate.getTime());
 
-                    // Création de l'objet NewServiceSite avec la date convertie
+                    // On rappelle timestamp pour créer le nouvel objet
                     NewServiceSite newServiceSite = new NewServiceSite(
                             nameServiceSite.getText(),
                             typeServiceSite.getText(),
                             phoneServiceSite.getText(),
                             emailServiceSite.getText(),
-                            timestamp,
+                            timestampDateCreation,
                             Integer.parseInt(addressServiceSite.getText()),
                             Integer.parseInt(worksiteServiceSite.getText())
                     );
