@@ -275,7 +275,7 @@ public class DetailsServiceSiteController {
             departmentCode.setText(String.valueOf(address.getDepartmentCode()));
             cityName.setText(address.getCityName());
         } else {
-            // Gérer le cas où l'adresse n'est pas trouvée
+
         }
 
         Worksite worksite = worksiteDAO.getWorksiteById(worksiteId);
