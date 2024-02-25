@@ -129,9 +129,9 @@ public class DetailsWorksiteController {
 
             //Boîte de dialogue pour confirmartion
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmationAlert.setTitle("Confirmation de la suppression");
+            confirmationAlert.setTitle("Une merveilleuse idée ?");
             confirmationAlert.setHeaderText(null);
-            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer ce site ?");
+            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer cette annexe du château ?");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -143,7 +143,7 @@ public class DetailsWorksiteController {
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                     successAlert.setTitle("Suppression réussie");
                     successAlert.setHeaderText(null);
-                    successAlert.setContentText("Le chantier a été supprimé avec succès.");
+                    successAlert.setContentText("L'annexe du château a été supprimée avec succès.");
                     successAlert.showAndWait();
                 } catch (IOException e) {
                     // En cas d'erreur lors de la suppression, afficher une alerte d'erreur
@@ -168,6 +168,7 @@ public class DetailsWorksiteController {
     void displayAddress(ActionEvent event) {
         //Affichage de la liste d'adresses disponibles
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoAddress.fxml"));
             Parent root = loader.load();
 
@@ -214,6 +215,23 @@ public class DetailsWorksiteController {
                 int worksiteId = Integer.parseInt(idWorksite.getText());
 
                 try {
+                    if (!isNumeric(phoneWorksite.getText())) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Immobilis !");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Les moldus n'utilisent que des chiffres dans leurs numéros de téléphone et pas plus de 10 !");
+                        errorAlert.showAndWait();
+                        return;
+                    }
+
+                    if (!isValidEmail(String.valueOf(emailWorksite))) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Erreur");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("L'adresse email n'est pas valide.");
+                        errorAlert.showAndWait();
+                        return;
+                    }
                     // Appeler la méthode updateWorksite de votre API avec les nouvelles données
                     worksiteDAO.updateWorksite(worksiteId, newWorksite);
                     // Gérer la réussite de la mise à jour, par exemple, afficher un message de confirmation
@@ -305,5 +323,13 @@ public class DetailsWorksiteController {
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setContentText("L'id du site n'a pas été trouvé");
         }
+    }
+    private boolean isNumeric(String stringType) {
+        return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
     }
 }

@@ -114,9 +114,9 @@ public class DetailsEmployeeController {
             int idService = selectedEmployee.getIdEmployee();
 
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmationAlert.setTitle("Confirmation de la suppression");
+            confirmationAlert.setTitle("Une merveilleuse idée ?");
             confirmationAlert.setHeaderText(null);
-            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer cet employé ?");
+            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer ce sorcier ?");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -124,16 +124,16 @@ public class DetailsEmployeeController {
                     serviceDAO.deleteServiceSite(idService);
 
                     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Suppression réussie");
+                    successAlert.setTitle("Avada Kedavra");
                     successAlert.setHeaderText(null);
-                    successAlert.setContentText("L'employé a été supprimé avec succès.");
+                    successAlert.setContentText("Le sorcier a été supprimé avec succès.");
                     successAlert.showAndWait();
                 } catch (IOException e) {
 
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Erreur lors de la suppression");
+                    errorAlert.setTitle("Immobilis !");
                     errorAlert.setHeaderText(null);
-                    errorAlert.setContentText("Erreur lors de la suppression du chantier : " + e.getMessage());
+                    errorAlert.setContentText("Le sorcier n'a pas été supprimé parce que : " + e.getMessage());
                     errorAlert.showAndWait();
                 }
             }
@@ -178,6 +178,24 @@ public class DetailsEmployeeController {
                     java.util.Date parsedDateHiring = birthDateFormat.parse(hiringDate);
                     Timestamp timestampHiringDate = new Timestamp(parsedDateHiring.getTime());
 
+                    if (!isNumeric(phoneEmployee.getText()) || !isNumeric(cellphoneEmployee.getText())) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Immobilis !");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Les moldus n'utilisent que des chiffres dans leurs numéros de téléphone et pas plus de 10 !");
+                        errorAlert.showAndWait();
+                        return;
+                    }
+
+                    if (!isValidEmail(String.valueOf(emailEmployee))) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Erreur");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("L'adresse email n'est pas valide.");
+                        errorAlert.showAndWait();
+                        return;
+                    }
+
                     NewEmployee newEmployee = new NewEmployee(
                             firstNameEmployee.getText(),
                             lastNameEmployee.getText(),
@@ -195,10 +213,10 @@ public class DetailsEmployeeController {
 
                     try {
                         employeeDAO.updateEmployee(employeeId, newEmployee);
-                        System.out.println("Site de travail mis à jour avec succès !");
+                        System.out.println("Sorcier mis à jour avec succès !");
                     } catch (IOException ex) {
                         ex.printStackTrace();
-                        System.err.println("Erreur lors de la mise à jour du site de travail : " + ex.getMessage());
+                        System.err.println("Erreur lors de la mise à jour du sorcier : " + ex.getMessage());
                     }
                 } catch (ParseException ex) {
                     ex.printStackTrace();
@@ -293,5 +311,14 @@ public class DetailsEmployeeController {
         nameWorksite.setEditable(false);
         idServiceSite.setEditable(false);
         nameServiceSite.setEditable(false);
+    }
+
+    private boolean isNumeric(String stringType) {
+        return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
     }
 }

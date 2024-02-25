@@ -74,6 +74,24 @@ public class AddEmployeeController {
             String cellphoneEmployee = cellphoneField.getText();
             String emailEmployee = emailField.getText();
 
+            if (!isNumeric(phoneEmployee) || !isNumeric(cellphoneEmployee)) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Immobilis");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Les moldus n'utilisent que des chiffres dans leurs numéros de téléphone et pas plus de 10 !");
+                errorAlert.showAndWait();
+                return;
+            }
+
+            if (!isValidEmail(String.valueOf(emailEmployee))) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("L'adresse email n'est pas valide.");
+                errorAlert.showAndWait();
+                return;
+            }
+
             LocalDate selectedDateBirth = birthdateField.getValue();
             java.sql.Date sqlDateBirth = java.sql.Date.valueOf(selectedDateBirth);
             Timestamp birthDate = new Timestamp(sqlDateBirth.getTime());
@@ -87,23 +105,32 @@ public class AddEmployeeController {
             NewEmployee newEmployee = new NewEmployee(firstNameEmployee,lastNameEmployee, jobEmployee, serviceEmployee, phoneEmployee, cellphoneEmployee, emailEmployee, birthDate, hiringDate, adminApplication);
             employeeDAO.createEmployee(newEmployee);
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Succès");
+            successAlert.setTitle("Gemino");
             successAlert.setHeaderText(null);
-            successAlert.setContentText("Nouveal employé ajouté avec succès !");
+            successAlert.setContentText("Un nouveau sorcier fait partie de nos rangs !");
             successAlert.showAndWait();
         } catch (NumberFormatException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
+            errorAlert.setTitle("Immobilis !");
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Erreur lors de l'ajout de l'employé : " + e.getMessage());
             errorAlert.showAndWait();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
+            errorAlert.setTitle("Immobilis !");
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Erreur lors de l'ajout de l'employé : " + e.getMessage());
             errorAlert.showAndWait();
         }
+    }
+
+    private boolean isNumeric(String stringType) {
+        return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
     }
 
     @FXML

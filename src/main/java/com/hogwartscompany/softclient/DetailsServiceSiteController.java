@@ -126,9 +126,9 @@ public class DetailsServiceSiteController {
             int idService = selectedServiceSite.getIdService();
 
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmationAlert.setTitle("Confirmation de la suppression");
+            confirmationAlert.setTitle("Une merveilleuse idée ?");
             confirmationAlert.setHeaderText(null);
-            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer ce site ?");
+            confirmationAlert.setContentText("Êtes-vous sur de vouloir supprimer cette tour ?");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -207,6 +207,24 @@ public class DetailsServiceSiteController {
                     java.util.Date parsedDate = dateFormat.parse(dateString);
                     Timestamp timestampDateCreation = new Timestamp(parsedDate.getTime());
 
+                    if (!isNumeric(phoneServiceSite.getText())) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Immobilis !");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Les moldus n'utilisent que des chiffres dans leurs numéros de téléphone et pas plus de 10 !");
+                        errorAlert.showAndWait();
+                        return;
+                    }
+
+                    if (!isValidEmail(String.valueOf(emailServiceSite))) {
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Erreur");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("L'adresse email n'est pas valide.");
+                        errorAlert.showAndWait();
+                        return;
+                    }
+
                     // On rappelle timestamp pour créer le nouvel objet
                     NewServiceSite newServiceSite = new NewServiceSite(
                             nameServiceSite.getText(),
@@ -222,10 +240,10 @@ public class DetailsServiceSiteController {
 
                     try {
                         serviceDAO.updateServiceSite(serviceSiteId, newServiceSite);
-                        System.out.println("Site de travail mis à jour avec succès !");
+                        System.out.println("Tour mise à jour avec succès !");
                     } catch (IOException ex) {
                         ex.printStackTrace();
-                        System.err.println("Erreur lors de la mise à jour du site de travail : " + ex.getMessage());
+                        System.err.println("Erreur lors de la mise à jour de la tour : " + ex.getMessage());
                     }
                 } catch (ParseException ex) {
                     ex.printStackTrace();
@@ -320,8 +338,15 @@ public class DetailsServiceSiteController {
             listEmployeesOfService.setItems(employeeObservableList);
         } else {
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setContentText("L'id du service n'a pas été trouvé");
+            successAlert.setContentText("L'ID du service n'a pas été trouvé");
         }
     }
+    private boolean isNumeric(String stringType) {
+        return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
+    }
 
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
+    }
 }

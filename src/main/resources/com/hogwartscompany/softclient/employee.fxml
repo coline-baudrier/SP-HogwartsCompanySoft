@@ -41,7 +41,7 @@
                                 <TableColumn fx:id="birthdateEmployee" prefWidth="101.0" text="Anniversaire" />
                         <TableColumn fx:id="hiringDateEmployee" prefWidth="82.0" text="Embauche" />
                         <TableColumn fx:id="isAdminEmployee" prefWidth="82.0" text="Admin" visible="false" />
-                                <TableColumn fx:id="serviceEmployee" prefWidth="87.0" text="Site rattaché" visible="false" />
+                                <TableColumn fx:id="serviceEmployee" prefWidth="87.0" text="Site rattaché" />
                             </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

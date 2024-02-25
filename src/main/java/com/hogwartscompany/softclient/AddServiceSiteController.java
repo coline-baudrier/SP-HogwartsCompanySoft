@@ -62,6 +62,25 @@ public class AddServiceSiteController {
             String phoneServiceSite = phoneField.getText();
             String emailServiceSite = emailField.getText();
 
+            if (!isNumeric(phoneServiceSite)) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Immobilis");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Les moldus n'utilisent que des chiffres dans leurs numéros de téléphone et pas plus de 10 !");
+                errorAlert.showAndWait();
+                return;
+            }
+
+            if (!isValidEmail(String.valueOf(emailServiceSite))) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("L'adresse email n'est pas valide.");
+                errorAlert.showAndWait();
+                return;
+            }
+
+
             LocalDate selectedDate = dateField.getValue();
             java.sql.Date sqlDate = java.sql.Date.valueOf(selectedDate);
             Timestamp dateCreationServiceSite = new Timestamp(sqlDate.getTime());
@@ -73,19 +92,19 @@ public class AddServiceSiteController {
             serviceDAO.createServiceSite(newServiceSite);
 
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Succès");
+            successAlert.setTitle("Gemino!");
             successAlert.setHeaderText(null);
-            successAlert.setContentText("Nouveau site de travail ajouté avec succès !");
+            successAlert.setContentText("Une nouvelle tour à été ajoutée au château !");
             successAlert.showAndWait();
         } catch (NumberFormatException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
+            errorAlert.setTitle("Immobilis !");
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Erreur lors de l'ajout du site de travail : " + e.getMessage());
             errorAlert.showAndWait();
         } catch (IOException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
+            errorAlert.setTitle("Immobilis !");
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Erreur lors de l'ajout du site de travail : " + e.getMessage());
             errorAlert.showAndWait();
@@ -120,6 +139,15 @@ public class AddServiceSiteController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isNumeric(String stringType) {
+        return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email != null && email.matches(emailRegex);
     }
 
 }
