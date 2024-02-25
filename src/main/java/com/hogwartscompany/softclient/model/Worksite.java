@@ -12,6 +12,7 @@ public class Worksite {
     private final SimpleStringProperty emailWorksite;
     private final SimpleIntegerProperty idAddress;
 
+    //Class complète contrairement à New, permet l'affichage de la class complète
     public Worksite(
             @JsonProperty("idWorksite") int idWorksite,
             @JsonProperty("nameWorksite") String nameWorksite,

@@ -41,6 +41,7 @@ public class AddWorksiteController {
         this.worksiteDAO = new WorksiteDAO();
     }
 
+    //Permet de fermer la PopUp
     @FXML
     void closePopUp(ActionEvent event) {
         Scene scene = buttonClosePopUp.getScene();
@@ -50,15 +51,18 @@ public class AddWorksiteController {
 
     public void addWorksite(ActionEvent actionEvent) {
         try {
+            //Récupération du texte inscrit par l'administrateur
             String nameWorksite = nameField.getText();
             String typeWorksite = typeField.getText();
             String phoneWorksite = phoneField.getText();
             String emailWorksite = emailField.getText();
             int idAddress = Integer.parseInt(idAddressField.getText());
 
+            //Création de la nouvelle occurence avec le passage des paramètres
             NewWorksite newWorksite = new NewWorksite(nameWorksite, typeWorksite, phoneWorksite, emailWorksite, idAddress);
             worksiteDAO.createWorksite(newWorksite);
 
+            //Fenêtre d'alerte pour le succès de l'ajout
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Succès");
             successAlert.setHeaderText(null);
@@ -81,6 +85,7 @@ public class AddWorksiteController {
 
     @FXML
     void displayAddress(ActionEvent event) {
+        //Permet d'afficher la liste des adresses disponibles
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoAddress.fxml"));
             Parent root = loader.load();

@@ -59,6 +59,7 @@ public class WorksiteDAO {
     }
 
     public Worksite getWorksiteById(int idWorksite) {
+        //Récupération des données par ID pour un seul worksite
         StringBuilder responseString = new StringBuilder();
 
         try {
@@ -86,9 +87,11 @@ public class WorksiteDAO {
     }
 
     public void createWorksite(NewWorksite newWorksite) throws IOException {
+        //Cration d'un worksite avec la méthode POST
         URL url = new URL(API_URL);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
+        //On indique le format sous lequel seront envoyées les informations → JSON dans notre cas
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setDoOutput(true);
 
@@ -106,6 +109,7 @@ public class WorksiteDAO {
     }
 
     public Worksite deleteWorksite(int idWorksite) throws IOException {
+        //Suppression d'un worksite
             URL url = new URL(API_URL + "/" + idWorksite);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("DELETE");
@@ -123,9 +127,11 @@ public class WorksiteDAO {
     }
 
     public Worksite updateWorksite (int idWorksite, NewWorksite newWorksite) throws IOException {
+        //Mise à jour du worksite, fonctionne de la même manière que la création
         URL url = new URL(API_URL + "/" + idWorksite);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
+        //Méthode PUT pour remplacer les données
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setDoOutput(true);
 
@@ -144,6 +150,7 @@ public class WorksiteDAO {
     }
 
     public List<Worksite> searchWorksiteByName(String searchTerm) {
+        //Possibilité de chercher un worksite par son nom
         StringBuilder responseString = new StringBuilder();
 
         try {
@@ -171,6 +178,7 @@ public class WorksiteDAO {
         return parseJsonArray(responseString.toString());
     }
 
+    //Création de la méthode parseJsonString pour découper la chaîne de carctères récupérées → format de class puisque sert au GetOne
     public static Worksite parseJsonString(String jsonString) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();

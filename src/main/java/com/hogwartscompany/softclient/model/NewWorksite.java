@@ -11,13 +11,17 @@ public class NewWorksite {
     private final SimpleStringProperty emailWorksite;
     private final SimpleIntegerProperty idAddress;
 
+    //Classe qui permet de gérer les nouveaux Worksite ou alors la mise à jour de ceux-ci
+    //Permet de ne pas influer nous même sur l'ID de création par exemple ce qui évite à deux administrateurs de créer des conflits dans la création
     public NewWorksite(
+            //On indique les JSONProperty afin que notre fichier les reconnaissent
             @JsonProperty("nameWorksite") String nameWorksite,
             @JsonProperty("typeWorksite") String typeWorksite,
             @JsonProperty("phoneWorksite") String phoneWorksite,
             @JsonProperty("emailWorksite") String emailWorksite,
             @JsonProperty("idAddress") int idAddress
     ) {
+        //On indique que nos données sont celles qui seront à mettre dans les property
         this.nameWorksite = new SimpleStringProperty(nameWorksite);
         this.typeWorksite = new SimpleStringProperty(typeWorksite);
         this.phoneWorksite = new SimpleStringProperty(phoneWorksite);
@@ -25,6 +29,7 @@ public class NewWorksite {
         this.idAddress = new SimpleIntegerProperty(idAddress);
     }
 
+    //Les getters et setters sont à faire pour les class "normales" et les property
     public String getNameWorksite() {
         return nameWorksite.get();
     }

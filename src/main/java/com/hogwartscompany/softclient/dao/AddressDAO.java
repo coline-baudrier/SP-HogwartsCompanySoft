@@ -53,7 +53,6 @@ public class AddressDAO {
 
     public static Address parseJsonString(String jsonString) {
         try {
-            // Utilisation de Jackson ObjectMapper pour mapper la chaîne JSON vers un objet Java
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(jsonString, Address.class);
         } catch (Exception e) {
@@ -63,28 +62,24 @@ public class AddressDAO {
     }
 
     public List<Address> getAllAddress() {
-        //La méthode nous permet de récupérer les sites de travail avec le GET de l'API (adresse)
-        //On récupère une chaîne de caractères JSON (format donné par l'API) pour la découper en fonction des champs définis dans notre classe
         StringBuilder responseString = new StringBuilder();
 
         try {
-            URL url = new URL(API_URL); // Utilisation de l'URL stockée en tant que variable globale
+            URL url = new URL(API_URL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
 
-            //On vérifie que la connexion s'est effectivement faite avant de continuer
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                //On a besoin de spécifier l'encodage UTF-8 lors de la création InputStreamReader → affichage des accents
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
-                String inputLine; //Ligne récupérée
 
-                //Tant que la boucle ne tombe pas sur une ligne vide, on continue de rajouter les lignes
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+                String inputLine;
+
                 while ((inputLine = in.readLine()) != null) {
                     responseString.append(inputLine);
                 }
-                //On ferme la lecture à la première ligne vide
+
                 in.close();
             } else {
                 responseString.append("Erreur de réponse de l'API. Code : ").append(responseCode);

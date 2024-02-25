@@ -83,7 +83,6 @@ public class NewServiceSite {
         this.emailService.set(emailService);
     }
 
-
     public int getIdAddress() {
         return idAddress.get();
     }

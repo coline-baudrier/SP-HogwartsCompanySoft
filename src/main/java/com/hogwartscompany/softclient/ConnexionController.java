@@ -32,6 +32,7 @@ public class ConnexionController {
 
     @FXML
     private void pressButtonConnexion (ActionEvent event) {
+        //Pression du bouton pour la connexion
         UserSession userSession = UserSession.getInstance();
 
         if (!userSession.isAdmin()) {
@@ -42,6 +43,7 @@ public class ConnexionController {
 
     @FXML
     void goToHomePage() {
+        //Envoie vers la page d'accueil
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             Parent root = loader.load();
@@ -57,13 +59,14 @@ public class ConnexionController {
 
     @FXML
     void handleKeyPressed(KeyEvent event) {
+        //Gestion de l'appui des touches avec KeyEvent
         if (event.isControlDown() && event.getCode() == KeyCode.TAB) {
             String adminPassword = "Rictusempra";
 
             TextInputDialog askPassAdmin = new TextInputDialog();
             askPassAdmin.setTitle("Sorcier diplômé ?");
             askPassAdmin.setContentText("Donne moi le mot de passe pour entrer dans la maison des Admin : ");
-
+            //Vérification du mot de passe tapé
             askPassAdmin.showAndWait().ifPresent(passwordPrint -> {
                 if (passwordPrint.equals(adminPassword)) {
                     UserSession.getInstance().setAdmin(true);

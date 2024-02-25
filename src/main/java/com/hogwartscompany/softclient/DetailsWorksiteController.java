@@ -166,6 +166,7 @@ public class DetailsWorksiteController {
 
     @FXML
     void displayAddress(ActionEvent event) {
+        //Affichage de la liste d'adresses disponibles
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("infoAddress.fxml"));
             Parent root = loader.load();
@@ -188,6 +189,8 @@ public class DetailsWorksiteController {
     }
     @FXML
     void updateWorksite(ActionEvent event) {
+        //Update d'un worksite avec la possibilité d'écrire dans certaines cases
+        //Récupération des informations tapées et non changées
         boolean isAdmin = UserSession.getInstance().isAdmin();
         if (isAdmin) {
             idWorksite.setEditable(true);
@@ -199,6 +202,7 @@ public class DetailsWorksiteController {
 
             Button saveButton = new Button("Enregistrer");
             saveButton.setOnAction(e -> {
+                //Modification avec le passage des paramètres
                 NewWorksite newWorksite = new NewWorksite(
                         nameWorksite.getText(),
                         typeWorksite.getText(),
@@ -221,6 +225,7 @@ public class DetailsWorksiteController {
                 }
             });
 
+            //Ajout d'un bouton enregistrer
             AnchorPane container = (AnchorPane) idWorksite.getParent();
             container.getChildren().add(saveButton);
             saveButton.setStyle("-fx-background-color : #14A1D9;" +
@@ -242,6 +247,7 @@ public class DetailsWorksiteController {
     }
 
     public void initData(Worksite worksite) {
+        //Initialisation de la donnée en allant la récupérer dans l'API et pour l'afficher dans les fields concernés
         selectedWorksite = worksite;
         int addressId = worksite.getIdAddress(); // Obtenir l'ID de l'adresse
 
@@ -281,6 +287,7 @@ public class DetailsWorksiteController {
     }
 
     public void initialize() {
+        //Affichage des données dans le tableau de détail
         idServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().idServiceProperty().asObject());
         nameServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().nameServiceProperty());
         typeServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().typeServiceProperty());
@@ -288,6 +295,7 @@ public class DetailsWorksiteController {
     }
 
     public void loadDataIntoTableService() {
+        //Chargement des données
         int idWorksiteDetails = selectedWorksite.getIdWorksite();
         if (idWorksiteDetails != 0) {
             List<ServiceSite> listServices = serviceDAO.getServicesByWorksite(idWorksiteDetails);
