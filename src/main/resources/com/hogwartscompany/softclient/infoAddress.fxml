@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="458.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.InfoAddressController">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.InfoAddressController">
    <children>
-      <ImageView fitHeight="458.0" fitWidth="762.0" opacity="0.75" pickOnBounds="true">
+      <ImageView fitHeight="600.0" fitWidth="900.0" opacity="0.75" pickOnBounds="true">
          <image>
             <Image url="@../../../assets/image/wallpaper.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="34.0" prefHeight="67.0" prefWidth="370.0" style="-fx-background-color: #1F456E; -fx-background-radius: 25;" text="Informations adresses" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="201.0" layoutY="34.0" prefHeight="67.0" prefWidth="499.0" style="-fx-background-color: #56738C; -fx-background-radius: 20;" text="Liste des adresses" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="Script MT Bold" size="40.0" />
          </font>
       </Label>
-      <TableView fx:id="addressTable" layoutY="214.0" opacity="0.95" prefHeight="244.0" prefWidth="762.0">
+      <TableView fx:id="addressTable" layoutY="250.0" opacity="0.95" prefHeight="350.0" prefWidth="900.0">
         <columns>
           <TableColumn fx:id="idAddress" prefWidth="34.0" text="ID" />
           <TableColumn fx:id="buildingFloor" prefWidth="48.0" text="Etage" />
@@ -32,11 +32,11 @@
             <TableColumn fx:id="cityName" prefWidth="108.0" text="Ville" />
         </columns>
       </TableView>
-      <Button fx:id="buttonClosePopUp" layoutX="682.0" layoutY="14.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #1F456E; -fx-background-radius: 15;">
+      <Button fx:id="buttonClosePopUp" layoutX="804.0" layoutY="46.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: #205A8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);">
          <graphic>
-            <ImageView fitHeight="50.0" fitWidth="50.0" opacity="0.75" pickOnBounds="true">
+            <ImageView fitHeight="35.0" fitWidth="35.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../assets/icons/quit.png" />
+                  <Image url="@../../../assets/icons/reliques.png" />
                </image>
             </ImageView>
          </graphic>

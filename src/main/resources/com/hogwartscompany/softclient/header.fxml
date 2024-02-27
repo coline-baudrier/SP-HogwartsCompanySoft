@@ -8,66 +8,61 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="1200.0" style="-fx-background-color: #14A1D9; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.HeaderController">
+<AnchorPane nodeOrientation="LEFT_TO_RIGHT" opacity="0.9" prefHeight="150.0" prefWidth="1300.0" style="-fx-background-color: #56738C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.HeaderController">
    <children>
-      <ImageView fitHeight="81.0" fitWidth="191.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../assets/image/logo.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="buttonGoToWorksite" alignment="CENTER" contentDisplay="RIGHT" layoutX="165.0" layoutY="17.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goToWorksite" prefHeight="49.0" prefWidth="196.0" style="-fx-background-radius: 25; -fx-background-color: #80D2F2;" text="Sites de travail" textFill="WHITE">
+      <Button fx:id="buttonGoToWorksite" alignment="BASELINE_CENTER" contentDisplay="TOP" layoutX="38.0" layoutY="39.0" mnemonicParsing="false" onAction="#goToWorksite" prefHeight="45.0" prefWidth="220.0" style="-fx-background-radius: 20; -fx-background-color: #204F8C; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Sites de travail" textAlignment="CENTER" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../assets/icons/worksite.png" />
+                  <Image url="@../../../assets/icons/spellbook.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonGoToService" alignment="CENTER" contentDisplay="RIGHT" layoutX="404.0" layoutY="17.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goToService" prefHeight="49.0" prefWidth="196.0" style="-fx-background-radius: 25; -fx-background-color: #80D2F2;" text="Tous nos services" textFill="WHITE">
+      <Button fx:id="buttonGoToService" alignment="CENTER" contentDisplay="TOP" layoutX="286.0" layoutY="39.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goToService" prefHeight="45.0" prefWidth="220.0" style="-fx-background-radius: 20; -fx-background-color: #204F8C; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Tous nos services" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../assets/icons/service.png" />
+                  <Image url="@../../../assets/icons/chapeau.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font name="Lucida Sans Regular" size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonGoToEmployee" alignment="CENTER" contentDisplay="RIGHT" layoutX="652.0" layoutY="17.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goToEmployee" prefHeight="49.0" prefWidth="196.0" style="-fx-background-radius: 25; -fx-background-color: #80D2F2;" text="Nos employés" textFill="WHITE">
+      <Button fx:id="buttonGoToEmployee" alignment="CENTER" contentDisplay="TOP" layoutX="534.0" layoutY="39.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goToEmployee" prefHeight="45.0" prefWidth="220.0" style="-fx-background-radius: 20; -fx-background-color: #204F8C; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Nos employés" textAlignment="CENTER" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../assets/icons/employees.png" />
+                  <Image url="@../../../assets/icons/potion.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font name="Lucida Sans Regular" size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonSearchResults" layoutX="883.0" layoutY="17.0" mnemonicParsing="false" onAction="#searchResults" prefHeight="49.0" prefWidth="209.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Faire une recherche" textFill="WHITE">
+      <Button fx:id="buttonSearchResults" contentDisplay="TOP" layoutX="782.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchResults" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: #204F8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Faire une recherche" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../assets/icons/search.png" />
+                  <Image url="@../../../assets/icons/baguette.png" />
                </image>
             </ImageView>
          </graphic>
          <font>
-            <Font size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="buttonDisconnect" layoutX="1120.0" layoutY="20.0" mnemonicParsing="false" onAction="#disconnectAndClose" style="-fx-background-color: #80D2F2; -fx-background-radius: 15;">
+      <Button fx:id="buttonDisconnect" layoutX="1116.0" layoutY="53.0" mnemonicParsing="false" onAction="#disconnectAndClose" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: #204F8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../assets/icons/disconnect.png" />
+                  <Image url="@../../../assets/icons/reliques.png" />
                </image>
             </ImageView>
          </graphic>

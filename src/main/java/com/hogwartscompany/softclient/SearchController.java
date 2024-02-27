@@ -10,8 +10,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
@@ -161,7 +166,23 @@ public class SearchController {
 
         buttonSearch.setOnAction(event -> makeAResearch());
 
-        //TODO : mettre l'écouteur d'évènement pour l'affichage des détails
+        employeeTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                openDetailsEmployee();
+            }
+        });
+
+        serviceSiteTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                openDetailsService();
+            }
+        });
+
+        worksiteTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { //Compte 2 clics
+                openDetailsWorksite();
+            }
+        });
     }
 
 
@@ -186,6 +207,105 @@ public class SearchController {
     private void updateTableEmployee(List<Employee> searchResults) {
         ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList(searchResults);
         employeeTable.setItems(employeeObservableList);
+    }
+
+    @FXML
+    void openDetailsEmployee() {
+        Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+
+        if (selectedEmployee != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsEmployee.fxml"));
+                Parent root = loader.load();
+
+                DetailsEmployeeController controller = loader.getController();
+
+                controller.initData(selectedEmployee);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Détails employé");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune ligne sélectionnée !");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void openDetailsService() {
+        ServiceSite selectedServiceSite = serviceSiteTable.getSelectionModel().getSelectedItem();
+
+        if (selectedServiceSite != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsService.fxml"));
+                Parent root = loader.load();
+
+                DetailsServiceSiteController controller = loader.getController();
+
+                controller.initData(selectedServiceSite);
+                controller.loadDataIntoTableEmployee();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Détails du Worksite");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune ligne sélectionnée !");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void openDetailsWorksite() {
+        // Récupérer l'objet Worksite correspondant à la ligne sélectionnée
+        Worksite selectedWorksite = worksiteTable.getSelectionModel().getSelectedItem();
+
+        //On vérifie qu'un élément est sélectionné
+        if (selectedWorksite != null) {
+            try {
+                //On charge le fichier de la nouvelle fenêtre
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsWorksite.fxml"));
+                Parent root = loader.load();
+
+                //On récupère le controller de la nouvelle fenêtre
+                DetailsWorksiteController controller = loader.getController();
+
+                //On envoie les informations du site sélectionné au controller de la nouvelle fenêtre
+                controller.initData(selectedWorksite);
+                controller.loadDataIntoTableService();
+
+                //Création de la nouvelle scene
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Détails du Worksite");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune ligne sélectionnée !");
+            alert.showAndWait();
+        }
     }
 
 }

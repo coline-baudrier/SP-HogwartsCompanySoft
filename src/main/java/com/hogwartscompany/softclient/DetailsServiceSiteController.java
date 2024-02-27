@@ -216,14 +216,14 @@ public class DetailsServiceSiteController {
                         return;
                     }
 
-                    if (!isValidEmail(String.valueOf(emailServiceSite))) {
+                    /*if (!isValidEmail(String.valueOf(emailServiceSite))) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("Erreur");
                         errorAlert.setHeaderText(null);
                         errorAlert.setContentText("L'adresse email n'est pas valide.");
                         errorAlert.showAndWait();
                         return;
-                    }
+                    }*/
 
                     // On rappelle timestamp pour créer le nouvel objet
                     NewServiceSite newServiceSite = new NewServiceSite(
@@ -328,6 +328,12 @@ public class DetailsServiceSiteController {
         phoneEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().phoneEmployeeProperty());
         cellphoneEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().cellphoneEmployeeProperty());
         jobEmployeeOfService.setCellValueFactory(cellData -> cellData.getValue().jobEmployeeProperty());
+
+        listEmployeesOfService.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                openDetails();
+            }
+        });
     }
 
     public void loadDataIntoTableEmployee() {
@@ -348,5 +354,35 @@ public class DetailsServiceSiteController {
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email != null && email.matches(emailRegex);
+    }
+
+    @FXML
+    void openDetails() {
+        Employee selectedEmployee = listEmployeesOfService.getSelectionModel().getSelectedItem();
+
+        if (selectedEmployee != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsEmployee.fxml"));
+                Parent root = loader.load();
+
+                DetailsEmployeeController controller = loader.getController();
+
+                controller.initData(selectedEmployee);
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Détails employé");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune ligne sélectionnée !");
+            alert.showAndWait();
+        }
     }
 }

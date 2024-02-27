@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.ServiceSiteController">
+<AnchorPane prefHeight="1000.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.ServiceSiteController">
     <children>
         <fx:include fx:id="header" source="header.fxml" />
-        <SplitPane dividerPositions="0.15202231520223153" layoutY="79.0" orientation="VERTICAL" prefHeight="719.0" prefWidth="1200.0">
+        <SplitPane dividerPositions="0.15202231520223153" layoutY="150.0" orientation="VERTICAL" prefHeight="850.0" prefWidth="1300.0">
             <items>
-              <AnchorPane fx:id="menuServiceSite" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="1200.0" style="-fx-background-color: #14A1D9;">
+              <AnchorPane fx:id="menuServiceSite" minHeight="0.0" minWidth="0.0" prefHeight="73.0" prefWidth="1200.0" style="-fx-background-color: #56738C;">
                    <children>
-                      <Button fx:id="buttonAddServiceSite" layoutX="968.0" layoutY="33.0" mnemonicParsing="false" onAction="#addServiceSite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Ajouter un service">
+                      <Button fx:id="buttonAddServiceSite" layoutX="1028.0" layoutY="43.0" mnemonicParsing="false" onAction="#addServiceSite" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #204F8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Ajouter un service" textFill="WHITE">
                          <font>
-                            <Font name="Lucida Sans Demibold Italic" size="16.0" />
+                            <Font name="Corbel Light" size="20.0" />
                          </font>
                       </Button>
-                      <Label alignment="CENTER" layoutX="14.0" layoutY="24.0" prefHeight="59.0" prefWidth="329.0" text="Liste des services" textAlignment="CENTER" textFill="WHITE">
+                      <Label alignment="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="59.0" prefWidth="615.0" text="Liste des services" textAlignment="CENTER" textFill="#e4eaf2">
                          <font>
-                            <Font name="Lucida Sans Demibold Italic" size="24.0" />
+                            <Font name="Script MT Bold" size="40.0" />
                          </font>
                       </Label>
                    </children>

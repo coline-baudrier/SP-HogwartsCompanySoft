@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #14A1D9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.SearchController">
-    <fx:include fx:id="header" source="header.fxml" />
+<AnchorPane prefHeight="1000.0" prefWidth="1300.0" style="-fx-background-color: #56738C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hogwartscompany.softclient.SearchController">
+   <fx:include fx:id="header" source="header.fxml" />
     <children>
-      <TabPane fx:id="resultsTable" layoutY="186.0" prefHeight="616.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="resultsTable" layoutY="225.0" prefHeight="775.0" prefWidth="1300.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Sites de travail">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="worksiteTable" prefHeight="722.0" prefWidth="1206.0" style="-fx-background-image: url=&quot;@../../../assets/image/wallpaper.jpg&quot;;">
+                        <TableView fx:id="worksiteTable" prefHeight="750.0" prefWidth="1300.0" style="-fx-background-image: url=&quot;@../../../assets/image/wallpaper.jpg&quot;;">
                           <columns>
                             <TableColumn fx:id="idWorksite" prefWidth="75.0" text="N° de site" />
                             <TableColumn fx:id="nameWorksite" prefWidth="75.0" text="Nom du site" />
@@ -39,7 +42,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="serviceSiteTable" prefHeight="685.0" prefWidth="1206.0">
+                        <TableView fx:id="serviceSiteTable" prefHeight="750.0" prefWidth="1300.0">
                            <columns>
                               <TableColumn fx:id="idService" prefWidth="75.0" text="N° service" />
                               <TableColumn fx:id="nameService" prefWidth="75.0" text="Nom du service" />
@@ -62,7 +65,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="employeeTable" prefHeight="685.0" prefWidth="1206.0">
+                        <TableView fx:id="employeeTable" prefHeight="750.0" prefWidth="1300.0">
                            <columns>
                               <TableColumn fx:id="idEmployee" prefWidth="75.0" text="N° Employé" />
                               <TableColumn fx:id="firstNameEmployee" prefWidth="75.0" text="Prénom" />
@@ -87,13 +90,23 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="buttonSearch" alignment="CENTER" layoutX="359.0" layoutY="120.0" mnemonicParsing="false" onAction="#makeAResearch" prefHeight="49.0" prefWidth="483.0" style="-fx-background-color: #1F456E;" text="Recherche" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="buttonSearch" alignment="CENTER" layoutX="714.0" layoutY="138.0" mnemonicParsing="false" onAction="#makeAResearch" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #1F456E; -fx-background-radius: 20;" text="Recherche" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
          <graphic>
-            <TextField fx:id="searchField" prefHeight="25.0" prefWidth="372.0" promptText="Chercher un site, un service, un employé... " />
+            <TextField fx:id="searchField" prefHeight="29.0" prefWidth="324.0" promptText="Chercher un site, un service, un employé... " />
          </graphic>
          <font>
-            <Font size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
       </Button>
+      <Label layoutX="214.0" layoutY="144.0" prefHeight="17.0" prefWidth="436.0" text="Faites une recherche ! " textFill="#e4eaf2">
+         <font>
+            <Font name="Script MT Bold" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="170.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/icons/poudlard.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

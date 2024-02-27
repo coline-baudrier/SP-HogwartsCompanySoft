@@ -7,18 +7,19 @@ import com.hogwartscompany.softclient.dao.WorksiteDAO;
 import com.hogwartscompany.softclient.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class DetailsEmployeeController {
     @FXML
@@ -99,6 +100,7 @@ public class DetailsEmployeeController {
     private AddressDAO addressDAO = new AddressDAO();
     private ServiceDAO serviceDAO = new ServiceDAO();
     private EmployeeDAO employeeDAO = new EmployeeDAO();
+
 
     @FXML
     void closePopUp(ActionEvent event) {
@@ -187,14 +189,14 @@ public class DetailsEmployeeController {
                         return;
                     }
 
-                    if (!isValidEmail(String.valueOf(emailEmployee))) {
+                    /*if (!isValidEmail(String.valueOf(emailEmployee))) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("Erreur");
                         errorAlert.setHeaderText(null);
                         errorAlert.setContentText("L'adresse email n'est pas valide.");
                         errorAlert.showAndWait();
                         return;
-                    }
+                    }*/
 
                     NewEmployee newEmployee = new NewEmployee(
                             firstNameEmployee.getText(),
@@ -317,8 +319,9 @@ public class DetailsEmployeeController {
         return stringType != null && stringType.matches("\\d+") && stringType.length() == 10;
     }
 
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email != null && email.matches(emailRegex);
-    }
+    //private boolean isValidEmail(String email) {
+      //  String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        //return email != null && email.matches(emailRegex);
+    //}
+
 }

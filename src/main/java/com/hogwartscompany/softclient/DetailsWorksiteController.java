@@ -224,14 +224,14 @@ public class DetailsWorksiteController {
                         return;
                     }
 
-                    if (!isValidEmail(String.valueOf(emailWorksite))) {
+                    /*if (!isValidEmail(String.valueOf(emailWorksite))) {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("Erreur");
                         errorAlert.setHeaderText(null);
                         errorAlert.setContentText("L'adresse email n'est pas valide.");
                         errorAlert.showAndWait();
                         return;
-                    }
+                    }*/
                     // Appeler la méthode updateWorksite de votre API avec les nouvelles données
                     worksiteDAO.updateWorksite(worksiteId, newWorksite);
                     // Gérer la réussite de la mise à jour, par exemple, afficher un message de confirmation
@@ -310,6 +310,12 @@ public class DetailsWorksiteController {
         nameServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().nameServiceProperty());
         typeServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().typeServiceProperty());
         phoneServiceOfWorksite.setCellValueFactory(cellData -> cellData.getValue().phoneServiceProperty());
+
+        listServicesOfWorksite.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { //Compte 2 clics
+                openDetails();
+            }
+        });
     }
 
     public void loadDataIntoTableService() {
@@ -332,4 +338,36 @@ public class DetailsWorksiteController {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email != null && email.matches(emailRegex);
     }
+
+    @FXML
+    void openDetails() {
+        ServiceSite selectedServiceSite = listServicesOfWorksite.getSelectionModel().getSelectedItem();
+
+        if (selectedServiceSite != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("detailsService.fxml"));
+                Parent root = loader.load();
+
+                DetailsServiceSiteController controller = loader.getController();
+
+                controller.initData(selectedServiceSite);
+                controller.loadDataIntoTableEmployee();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Détails du Worksite");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune ligne sélectionnée !");
+            alert.showAndWait();
+        }
+    }
+
 }

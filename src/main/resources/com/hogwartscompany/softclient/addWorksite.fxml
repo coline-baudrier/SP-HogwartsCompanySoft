@@ -15,95 +15,124 @@
                 <Image url="@../../../assets/image/wallpaper.jpg" />
             </image>
         </ImageView>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="34.0" prefHeight="53.0" prefWidth="549.0" style="-fx-background-color: #80D2F2; -fx-background-radius: 25;" text="Détails site de travail" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Nom">
             <font>
-                <Font name="Lucida Sans Regular" size="26.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Nom">
+        <TextField fx:id="nameField" layoutX="152.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" promptText="Nom du site">
+         <font>
+            <Font name="Corbel Light" size="16.0" />
+         </font></TextField>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Type">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="nameField" layoutX="152.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="153.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Type">
+        <TextField fx:id="typeField" layoutX="497.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" promptText="Production, administratif">
+         <font>
+            <Font name="Corbel Light" size="16.0" />
+         </font></TextField>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="209.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Téléphone">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="typeField" layoutX="497.0" layoutY="153.0" prefHeight="35.0" prefWidth="210.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="209.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Téléphone">
+        <TextField fx:id="phoneField" layoutX="152.0" layoutY="209.0" prefHeight="35.0" prefWidth="345.0" promptText="000000000">
+         <font>
+            <Font name="Corbel Light" size="16.0" />
+         </font></TextField>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="266.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Email">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="phoneField" layoutX="152.0" layoutY="209.0" prefHeight="35.0" prefWidth="345.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="266.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Email">
+        <TextField fx:id="emailField" layoutX="152.0" layoutY="265.0" prefHeight="35.0" prefWidth="345.0" promptText="nomdusite@hogwarts-company.fr">
+         <font>
+            <Font name="Corbel Light" size="16.0" />
+         </font></TextField>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="350.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Adresse">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="emailField" layoutX="152.0" layoutY="265.0" prefHeight="35.0" prefWidth="345.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="350.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Adresse">
+        <TextField fx:id="idAddressField" layoutX="152.0" layoutY="350.0" prefHeight="35.0" prefWidth="102.0" promptText="ID">
+         <font>
+            <Font name="Corbel Light" size="16.0" />
+         </font></TextField>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Etage">
             <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
-        <TextField fx:id="idAddressField" layoutX="152.0" layoutY="350.0" prefHeight="35.0" prefWidth="102.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Etage">
-            <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="152.0" layoutY="409.0" prefHeight="35.0" prefWidth="210.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Bâtiment">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="409.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Bâtiment">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="497.0" layoutY="409.0" prefHeight="35.0" prefWidth="210.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="467.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Adresse">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="467.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Adresse">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="152.0" layoutY="467.0" prefHeight="35.0" prefWidth="556.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="525.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Complement">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="525.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Complement">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="152.0" layoutY="525.0" prefHeight="35.0" prefWidth="556.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Département">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Département">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="152.0" layoutY="577.0" prefHeight="35.0" prefWidth="210.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #F2F2F2; -fx-background-radius: 15;" text="Ville">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="370.0" layoutY="577.0" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #8BB4D9; -fx-background-radius: 20;" text="Ville">
             <font>
-                <Font size="16.0" />
+                <Font name="Corbel Light" size="18.0" />
             </font>
         </Label>
         <TextField layoutX="497.0" layoutY="577.0" prefHeight="35.0" prefWidth="210.0" />
-        <Button fx:id="buttonClosePopUp" layoutX="708.0" layoutY="39.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 10;">
-         <graphic>
-                <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../assets/icons/quit.png" />
-                    </image>
-                </ImageView>
-         </graphic>
-        </Button>
-      <Button fx:id="buttonAddWorksite" layoutX="310.0" layoutY="632.0" mnemonicParsing="false" onAction="#addWorksite" prefHeight="43.0" prefWidth="180.0" style="-fx-background-color: #14A1D9; -fx-background-radius: 10;" text="Ajouter le site" textFill="WHITE">
+      <Button fx:id="buttonAddWorksite" layoutX="300.0" layoutY="641.0" mnemonicParsing="false" onAction="#addWorksite" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #205A8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Ajouter le site" textFill="WHITE">
          <font>
-            <Font name="Lucida Sans Regular" size="16.0" />
+            <Font name="Corbel Light" size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/icons/fumée.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-        <Button fx:id="buttonDisplayAddress" layoutX="266.0" layoutY="353.0" mnemonicParsing="false" onAction="#displayAddress" style="-fx-background-color: #80D2F2; -fx-background-radius: 15;" text="Voir le détail des adresses">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="39.0" prefHeight="53.0" prefWidth="549.0" style="-fx-background-color: #56738C; -fx-background-radius: 20;" text="Détails site de travail" textAlignment="CENTER" textFill="#e4eaf2">
+         <font>
+            <Font name="Script MT Bold" size="34.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonClosePopUp" layoutX="722.0" layoutY="44.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="51.0" style="-fx-background-color: #205A8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="35.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/icons/reliques.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="buttonDisplayAddress" alignment="CENTER" layoutX="270.0" layoutY="345.0" mnemonicParsing="false" onAction="#displayAddress" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #205A8C; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);" text="Détail adresses" textFill="WHITE">
+         <font>
+            <Font name="Corbel Light" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/icons/baguette.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
     </children>
 </AnchorPane>
